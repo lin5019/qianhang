@@ -13,11 +13,11 @@
 // ];
 
 function loadData(arr) {
-    let html;
-    $('.siteList>li').not('.last').remove();
-    arr.forEach(obj => {
-        console.log(1, obj.logo);
-        html = `
+  let html;
+  $(".siteList>li").not(".last").remove();
+  arr.forEach((obj) => {
+    console.log(1, obj.logo);
+    html = `
         <li>
         <a href="${obj.href}">
             <div class="site">
@@ -28,11 +28,11 @@ function loadData(arr) {
             </div>
         </a>
         </li>`;
-        $(html).insertBefore($('.last'));
-    });
+    $(html).insertBefore($(".last"));
+  });
 }
 
-loadData(arr);
+// loadData(arr);
 // $('.addButton').on('click', fn);
 // function fn() {
 //     let str = prompt();
@@ -54,3 +54,32 @@ loadData(arr);
 //     var e = window.event || e;
 //     e.returnValue = '确定离开当前页面吗？';
 // };
+
+// add shortcut
+let state = false;
+$(".addPage").on("input", "input", () => {
+  if (
+    $(".addName").val().trim().length > 0 &&
+    $(".addSite").val().trim().length > 0
+  ) {
+    if (state === false) {
+      state = true;
+      $(".completion").addClass("blue");
+    }
+  } else {
+    if (state) {
+      state = false;
+      $(".completion").removeClass("blue");
+    }
+  }
+});
+
+
+
+$('.cancel').on('touchstart',function(){
+    console.log(1);
+})
+$('.cancel').on('touchend',function(){
+    console.log(2);
+})
+
