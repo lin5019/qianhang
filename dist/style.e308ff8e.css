@@ -63,7 +63,6 @@ body {
   border-radius: 4px;
 }
 .global-content {
-  border: springgreen solid 1px;
   margin: 20px;
 }
 .siteList {
@@ -72,19 +71,59 @@ body {
   justify-content: space-between;
 }
 .siteList li {
+  position: relative;
   width: 160px;
   padding: 20px 0;
   margin-bottom: 10px;
   background: #fff;
   border-radius: 4px;
 }
+.siteList .last {
+  position: static;
+}
+.siteList .shadow-wrapper {
+  border: 1px solid red;
+  position: absolute;
+  top: 0;
+  right: 5px;
+  display: none;
+}
+.siteList li:hover > .shadow-wrapper {
+  display: block;
+}
+.siteList .edit-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #fff;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 4px;
+}
+.edit-wrapper .edit,
+.edit-wrapper .del {
+  /* border: 1px solid red; */
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 4px;
+}
+.edit-wrapper .edit:hover,
+.edit-wrapper .del:hover {
+  background: #e8eaed;
+}
+
 .siteList .site {
+  border: seagreen 1px solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .siteList .site > .logo {
+  border: 1px solid red;
   font-size: 28px;
   height: 64px;
   display: flex;
@@ -120,7 +159,7 @@ body {
   right: 0;
   padding: 20px;
   background: #fff;
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 .addPage > .title {

@@ -118,52 +118,48 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-// console.log(JSON.parse(localStorage.getItem('data')));
-// let arr = [
-//     {
-//         href: 'https://www.acfun.cn/',
-//         logo: 'acfun',
-//         // link: 'www.acfun.cn',
-//     },
-//     {
-//         href: 'https://www.bilibili.com/',
-//         logo: 'bilibili',
-//         // link: 'www.bilibili.com',
-//     },
-// ];
+var arr = JSON.parse(localStorage.getItem("siteData")) || [{
+  href: "https://www.acfun.cn/",
+  logo: "acfun" // link: 'www.acfun.cn',
+
+}, {
+  href: "https://www.bilibili.com/",
+  logo: "bilibili" // link: 'www.bilibili.com',
+
+}];
+
 function loadData(arr) {
   var html;
   $(".siteList>li").not(".last").remove();
-  arr.forEach(function (obj) {
-    console.log(1, obj.logo);
-    html = "\n        <li>\n        <a href=\"".concat(obj.href, "\">\n            <div class=\"site\">\n                <div class=\"logo\">\n                    ").concat(obj.logo, "\n                </div>\n               \n            </div>\n        </a>\n        </li>");
+  arr.forEach(function (obj, i) {
+    html = "\n        <li>\n        <div class=\"shadow-wrapper\">\n            <svg class=\"icon\">\n              <use xlink:href=\"#icon-shadow-list\"></use>\n            </svg>\n          </div>\n          <div class=\"edit-wrapper\" data-index=".concat(i, ">\n              <div class=\"edit\">\u4FEE\u6539\u5FEB\u6377\u65B9\u5F0F</div>\n              <div class=\"del\">\u79FB\u9664</div>\n          </div>\n        <a href=\"").concat(obj.href, "\">\n            <div class=\"site\">\n                <div class=\"logo\">\n                    ").concat(obj.logo, "\n                </div>\n               \n            </div>\n        </a>\n        </li>");
     $(html).insertBefore($(".last"));
   });
-} // loadData(arr);
-// $('.addButton').on('click', fn);
-// function fn() {
-//     let str = prompt();
-//     if (str[0] !== 'h') {
-//         str = 'https://' + str;
-//     }
-//     arr.push({
-//         href: str,
-//         logo: str,
-//         link: str,
-//     });
-//     loadData(arr);
-// }
-// window.onbeforeunload = function (e) {
-//    localStorage.setItem('data', JSON.stringify(arr));
-//     var e = window.event || e;
-//     e.returnValue = '确定离开当前页面吗？';
-// };
-// add shortcut
+}
+
+loadData(arr);
+$(".addButton").on("click", fn);
+
+function fn() {
+  //to add shorcut
+  $(".addPage").css("display", "flex");
+}
+
+window.onbeforeunload = function (e) {
+  localStorage.setItem("siteData", JSON.stringify(arr)); //   var e = window.event || e;
+  //   e.returnValue = "确定离开当前页面吗？";
+}; // add shortcut
+//开关
 
 
 var state = false;
+var siteName;
+var siteAddress;
 $(".addPage").on("input", "input", function () {
-  if ($(".addName").val().trim().length > 0 && $(".addSite").val().trim().length > 0) {
+  siteName = $(".addName").val().trim();
+  siteAddress = $(".addSite").val().trim();
+
+  if (siteName.length > 0 && siteAddress.length > 0) {
     if (state === false) {
       state = true;
       $(".completion").addClass("blue");
@@ -175,11 +171,32 @@ $(".addPage").on("input", "input", function () {
     }
   }
 });
-$('.cancel').on('touchstart', function () {
-  console.log(1);
+$(".cancel").on("click", function () {
+  $(".addPage").css("display", "none");
 });
-$('.cancel').on('touchend', function () {
-  console.log(2);
+$(".completion").on("click", function () {
+  if (state) {
+    if (siteAddress[0] !== "h") {
+      siteAddress = "https://" + siteAddress;
+    }
+
+    arr.push({
+      href: siteAddress,
+      logo: siteName
+    });
+    loadData(arr);
+    $(".addPage").css("display", "none");
+    $(".addName").val("");
+    $(".addSite").val("");
+  }
+}); // delete && edit
+
+$(".shadow-wrapper").on("click", function () {
+  $(this).siblings(".edit-wrapper").css("display", "flex");
+  e.preventDefault();
+  console.log(12);
+});
+$(".edit-wrapper").on("blur", function () {//   $(".edit-wrapper").css("display", "none");
 });
 },{}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -209,7 +226,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49985" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51610" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
