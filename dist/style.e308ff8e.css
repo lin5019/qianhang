@@ -33,8 +33,6 @@ button {
   outline: none;
   border: none;
 }
-button:hover {
-}
 
 /* css style */
 body {
@@ -62,9 +60,18 @@ body {
   color: #fff;
   border-radius: 4px;
 }
+@media (min-width: 550px) {
+  .searchForm {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+  }
+}
+
 .global-content {
   margin: 20px;
 }
+
 .siteList {
   display: flex;
   flex-flow: wrap;
@@ -78,11 +85,30 @@ body {
   background: #fff;
   border-radius: 4px;
 }
+@media(min-width: 550px) {
+  .global-content {
+    /* border: #000 solid 2px; */
+    max-width: 900px;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    
+  }
+  .siteList {
+    /* border: red solid 1px; */
+    justify-content: flex-start;
+    margin-right: -30px;
+  }
+
+  .siteList li {
+    margin-right: 24px;
+  }
+}
 .siteList .last {
   position: static;
 }
 .siteList .shadow-wrapper {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   position: absolute;
   top: 0;
   right: 5px;
@@ -116,18 +142,22 @@ body {
 }
 
 .siteList .site {
-  border: seagreen 1px solid;
+  /* border: seagreen 1px solid; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .siteList .site > .logo {
-  border: 1px solid red;
-  font-size: 28px;
+  /* border: 1px solid red; */
+  font-size: 20px;
   height: 64px;
-  display: flex;
-  align-items: center;
+  width: 130px;
+  line-height: 64px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .siteList .site > .link {
   font-size: 14px;

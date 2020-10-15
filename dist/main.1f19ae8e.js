@@ -120,19 +120,26 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 var arr = JSON.parse(localStorage.getItem("siteData")) || [{
   href: "https://www.acfun.cn/",
-  logo: "acfun" // link: 'www.acfun.cn',
-
+  logo: "acfun"
 }, {
   href: "https://www.bilibili.com/",
-  logo: "bilibili" // link: 'www.bilibili.com',
-
+  logo: "bilibili"
+}, {
+  href: "https://www.baidu.com/",
+  logo: "百度"
+}, {
+  href: "https://www.zhihu.com/",
+  logo: "知乎"
+}, {
+  href: "http://www.ruanyifeng.com/blog/",
+  logo: "阮一峰的网络日志"
 }];
 
 function loadData(arr) {
   var html;
   $(".siteList>li").not(".last").remove();
   arr.forEach(function (obj, i) {
-    html = "\n        <li>\n        <div class=\"shadow-wrapper\">\n            <svg class=\"icon\">\n              <use xlink:href=\"#icon-shadow-list\"></use>\n            </svg>\n          </div>\n          <div class=\"edit-wrapper\" data-index=".concat(i, ">\n              <div class=\"edit\">\u4FEE\u6539\u5FEB\u6377\u65B9\u5F0F</div>\n              <div class=\"del\">\u79FB\u9664</div>\n          </div>\n        <a href=\"").concat(obj.href, "\">\n            <div class=\"site\">\n                <div class=\"logo\">\n                    ").concat(obj.logo, "\n                </div>\n               \n            </div>\n        </a>\n        </li>");
+    html = "\n        <li>\n        <div class=\"shadow-wrapper\">\n            <svg class=\"icon\">\n              <use xlink:href=\"#icon-shadow-list\"></use>\n            </svg>\n          </div>\n          <div class=\"edit-wrapper\" >\n              <div class=\"edit\" data-index=".concat(i, ">\u4FEE\u6539\u5FEB\u6377\u65B9\u5F0F</div>\n              <div class=\"del\" data-index=").concat(i, ">\u79FB\u9664</div>\n          </div>\n        <a href=\"").concat(obj.href, "\">\n            <div class=\"site\">\n                <div class=\"logo\">\n                    ").concat(obj.logo, "\n                </div>\n               \n            </div>\n        </a>\n        </li>");
     $(html).insertBefore($(".last"));
   });
 }
@@ -155,7 +162,7 @@ window.onbeforeunload = function (e) {
 var state = false;
 var siteName;
 var siteAddress;
-$(".addPage").on("input", "input", function () {
+$(".addPage").on("input", function () {
   siteName = $(".addName").val().trim();
   siteAddress = $(".addSite").val().trim();
 
@@ -173,6 +180,9 @@ $(".addPage").on("input", "input", function () {
 });
 $(".cancel").on("click", function () {
   $(".addPage").css("display", "none");
+  $(".addName").val("");
+  $(".addSite").val("");
+  loadData(arr);
 });
 $(".completion").on("click", function () {
   if (state) {
@@ -191,13 +201,37 @@ $(".completion").on("click", function () {
   }
 }); // delete && edit
 
-$(".shadow-wrapper").on("click", function () {
+var ShadowState = false;
+$(".shadow-wrapper").on("click", function (e) {
   $(this).siblings(".edit-wrapper").css("display", "flex");
+  ShadowState = true;
   e.preventDefault();
-  console.log(12);
+  e.stopPropagation();
 });
-$(".edit-wrapper").on("blur", function () {//   $(".edit-wrapper").css("display", "none");
+$(".edit").on("click", function () {
+  $(".addPage").css("display", "flex");
+  $(".addName").val(arr[$(this).attr("data-index")].href);
+  $(".addSite").val(arr[$(this).attr("data-index")].logo);
 });
+$(".del").on("click", function (e) {
+  arr.splice($(this).attr("data-index"), 1);
+  loadData(arr);
+});
+$(document).on("click", function () {
+  if (ShadowState) {
+    $(".edit-wrapper").css("display", "none");
+  }
+}); // 回车提交表单
+
+document.onkeydown = function (e) {
+  // 兼容FF和IE和Opera
+  var theEvent = window.event || e;
+  var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+
+  if (code == 13) {
+    $(".completion").click();
+  }
+};
 },{}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -226,7 +260,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51610" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52232" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
