@@ -77,6 +77,7 @@ body {
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;
+  cursor: pointer;
 }
 .siteList li {
   position: relative;
@@ -119,7 +120,7 @@ body {
   /* border: 1px solid red; */
   position: absolute;
   top: 8px;
-  right: 8px;  
+  right: 8px;
   display: none;
 }
 .siteList li:hover > .shadow-wrapper {
@@ -150,7 +151,7 @@ body {
 }
 
 .siteList .site {
-  /* border: seagreen 1px solid; */
+  /* border: seagreen 2px solid; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -198,8 +199,14 @@ body {
   padding: 20px;
   background: #fff;
   display: none;
+  z-index: -1;
   flex-direction: column;
 }
+.addPageShow {
+  z-index: 1;
+  display:flex;
+}
+
 .addPage > .title {
   margin: 20px;
   margin-left: 0;
@@ -246,4 +253,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.5ffd6db1.css.map */
+/*# sourceMappingURL=style.d951bf94.css.map */

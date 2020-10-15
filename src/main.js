@@ -43,39 +43,38 @@ let arr = JSON.parse(localStorage.getItem("siteData")) || [
 
 function loadData(arr) {
   let html;
-  $(".siteList li").not(".last").remove();
+  $(".items").remove();
   arr.forEach((obj, i) => {
     html = `
-        <li>
-        <div class="shadow-wrapper">
-            <svg class="icon">
-              <use xlink:href="#icon-shadow-list"></use>
-            </svg>
-          </div>
-          <div class="edit-wrapper" >
-              <div class="edit" data-index=${i}>修改快捷方式</div>
-              <div class="del" data-index=${i}>移除</div>
-          </div>
-        <a href="${obj.href}">
-            <div class="site">
-                <div class="logo">
-                    ${obj.logo}
-                </div>
-               
-            </div>
-        </a>
-        </li>`;
+  <li class="items">
+    <div class="shadow-wrapper">
+      <svg class="icon">
+        <use xlink:href="#icon-shadow-list"></use>
+      </svg>
+    </div>
+    <div class="edit-wrapper">
+      <div class="edit" data-index="${i}">修改快捷方式</div>
+      <div class="del" data-index="${i}">移除</div>
+    </div>
+    <a href="${obj.href}">
+      <div class="site">
+        <div class="logo">${obj.logo}</div>
+      </div>
+    </a>
+  </li>
+        `;
     $(html).insertBefore($(".last"));
   });
 }
 
 loadData(arr);
 
-$(".addButton").on("click", fn);
-function fn() {
+$(".addButton").on("click", () => {
+  $(".addName").val("");
+  $(".addSite").val("");
   //to add shorcut
-  $(".addPage").css("display", "flex");
-}
+  $(".addPage").addClass('addPageShow')
+});
 
 window.onbeforeunload = function (e) {
   localStorage.setItem("siteData", JSON.stringify(arr));
@@ -103,9 +102,9 @@ $(".addPage").on("input", () => {
     }
   }
 });
-
+// addPageShow
 $(".cancel").on("click", function () {
-  $(".addPage").css("display", "none");
+  $(".addPage").removeClass('addPageShow')
   $(".addName").val("");
   $(".addSite").val("");
   loadData(arr);
@@ -122,18 +121,17 @@ $(".completion").on("click", () => {
       logo: siteName,
     });
     loadData(arr);
-    $(".addPage").css("display", "none");
-    $(".addName").val("");
-    $(".addSite").val("");
+    $(".addPage").removeClass('addPageShow')
   }
 });
 
 // delete && edit
+
 let ShadowState = false;
-$(".shadow-wrapper").on("click", function (e) {
+$(".siteList").on("click", ".shadow-wrapper", function (e) {
   $(this).siblings(".edit-wrapper").css("display", "flex");
   ShadowState = true;
-  e.preventDefault();
+  // e.preventDefault();
   e.stopPropagation();
 });
 

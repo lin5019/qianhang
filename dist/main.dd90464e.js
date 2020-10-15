@@ -152,20 +152,20 @@ var arr = JSON.parse(localStorage.getItem("siteData")) || [{
 
 function loadData(arr) {
   var html;
-  $(".siteList li").not(".last").remove();
+  $(".items").remove();
   arr.forEach(function (obj, i) {
-    html = "\n        <li>\n        <div class=\"shadow-wrapper\">\n            <svg class=\"icon\">\n              <use xlink:href=\"#icon-shadow-list\"></use>\n            </svg>\n          </div>\n          <div class=\"edit-wrapper\" >\n              <div class=\"edit\" data-index=".concat(i, ">\u4FEE\u6539\u5FEB\u6377\u65B9\u5F0F</div>\n              <div class=\"del\" data-index=").concat(i, ">\u79FB\u9664</div>\n          </div>\n        <a href=\"").concat(obj.href, "\">\n            <div class=\"site\">\n                <div class=\"logo\">\n                    ").concat(obj.logo, "\n                </div>\n               \n            </div>\n        </a>\n        </li>");
+    html = "\n  <li class=\"items\">\n    <div class=\"shadow-wrapper\">\n      <svg class=\"icon\">\n        <use xlink:href=\"#icon-shadow-list\"></use>\n      </svg>\n    </div>\n    <div class=\"edit-wrapper\">\n      <div class=\"edit\" data-index=\"".concat(i, "\">\u4FEE\u6539\u5FEB\u6377\u65B9\u5F0F</div>\n      <div class=\"del\" data-index=\"").concat(i, "\">\u79FB\u9664</div>\n    </div>\n    <a href=\"").concat(obj.href, "\">\n      <div class=\"site\">\n        <div class=\"logo\">").concat(obj.logo, "</div>\n      </div>\n    </a>\n  </li>\n        ");
     $(html).insertBefore($(".last"));
   });
 }
 
 loadData(arr);
-$(".addButton").on("click", fn);
+$(".addButton").on("click", function () {
+  $(".addName").val("");
+  $(".addSite").val(""); //to add shorcut
 
-function fn() {
-  //to add shorcut
-  $(".addPage").css("display", "flex");
-}
+  $(".addPage").addClass('addPageShow');
+});
 
 window.onbeforeunload = function (e) {
   localStorage.setItem("siteData", JSON.stringify(arr)); //   var e = window.event || e;
@@ -192,9 +192,10 @@ $(".addPage").on("input", function () {
       $(".completion").removeClass("blue");
     }
   }
-});
+}); // addPageShow
+
 $(".cancel").on("click", function () {
-  $(".addPage").css("display", "none");
+  $(".addPage").removeClass('addPageShow');
   $(".addName").val("");
   $(".addSite").val("");
   loadData(arr);
@@ -210,17 +211,15 @@ $(".completion").on("click", function () {
       logo: siteName
     });
     loadData(arr);
-    $(".addPage").css("display", "none");
-    $(".addName").val("");
-    $(".addSite").val("");
+    $(".addPage").removeClass('addPageShow');
   }
 }); // delete && edit
 
 var ShadowState = false;
-$(".shadow-wrapper").on("click", function (e) {
+$(".siteList").on("click", ".shadow-wrapper", function (e) {
   $(this).siblings(".edit-wrapper").css("display", "flex");
-  ShadowState = true;
-  e.preventDefault();
+  ShadowState = true; // e.preventDefault();
+
   e.stopPropagation();
 });
 $(".edit").on("click", function () {
@@ -248,4 +247,4 @@ document.onkeydown = function (e) {
   }
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.f0aa3795.js.map
+//# sourceMappingURL=main.dd90464e.js.map
