@@ -43,7 +43,7 @@ let arr = JSON.parse(localStorage.getItem("siteData")) || [
 
 function loadData(arr) {
   let html;
-  $(".siteList>li").not(".last").remove();
+  $(".siteList li").not(".last").remove();
   arr.forEach((obj, i) => {
     html = `
         <li>

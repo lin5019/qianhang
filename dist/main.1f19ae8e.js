@@ -152,7 +152,7 @@ var arr = JSON.parse(localStorage.getItem("siteData")) || [{
 
 function loadData(arr) {
   var html;
-  $(".siteList>li").not(".last").remove();
+  $(".siteList li").not(".last").remove();
   arr.forEach(function (obj, i) {
     html = "\n        <li>\n        <div class=\"shadow-wrapper\">\n            <svg class=\"icon\">\n              <use xlink:href=\"#icon-shadow-list\"></use>\n            </svg>\n          </div>\n          <div class=\"edit-wrapper\" >\n              <div class=\"edit\" data-index=".concat(i, ">\u4FEE\u6539\u5FEB\u6377\u65B9\u5F0F</div>\n              <div class=\"del\" data-index=").concat(i, ">\u79FB\u9664</div>\n          </div>\n        <a href=\"").concat(obj.href, "\">\n            <div class=\"site\">\n                <div class=\"logo\">\n                    ").concat(obj.logo, "\n                </div>\n               \n            </div>\n        </a>\n        </li>");
     $(html).insertBefore($(".last"));
@@ -275,7 +275,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60537" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63423" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
