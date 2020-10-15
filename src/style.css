@@ -118,8 +118,8 @@ body {
 .siteList .shadow-wrapper {
   /* border: 1px solid red; */
   position: absolute;
-  top: 0;
-  right: 5px;
+  top: 8px;
+  right: 8px;
   display: none;
 }
 .siteList li:hover > .shadow-wrapper {
