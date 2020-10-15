@@ -19,6 +19,26 @@ let arr = JSON.parse(localStorage.getItem("siteData")) || [
     href: "http://www.ruanyifeng.com/blog/",
     logo: "阮一峰的网络日志",
   },
+  {
+    href: "https://www.acfun.cn/",
+    logo: "acfun",
+  },
+  {
+    href: "https://www.bilibili.com/",
+    logo: "bilibili",
+  },
+  {
+    href: "https://www.baidu.com/",
+    logo: "百度",
+  },
+  {
+    href: "https://www.zhihu.com/",
+    logo: "知乎",
+  },
+  {
+    href: "http://www.ruanyifeng.com/blog/",
+    logo: "阮一峰的网络日志",
+  },
 ];
 
 function loadData(arr) {

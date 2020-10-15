@@ -133,6 +133,21 @@ var arr = JSON.parse(localStorage.getItem("siteData")) || [{
 }, {
   href: "http://www.ruanyifeng.com/blog/",
   logo: "阮一峰的网络日志"
+}, {
+  href: "https://www.acfun.cn/",
+  logo: "acfun"
+}, {
+  href: "https://www.bilibili.com/",
+  logo: "bilibili"
+}, {
+  href: "https://www.baidu.com/",
+  logo: "百度"
+}, {
+  href: "https://www.zhihu.com/",
+  logo: "知乎"
+}, {
+  href: "http://www.ruanyifeng.com/blog/",
+  logo: "阮一峰的网络日志"
 }];
 
 function loadData(arr) {
@@ -260,7 +275,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52232" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
