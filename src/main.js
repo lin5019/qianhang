@@ -20,24 +20,24 @@ let arr = JSON.parse(localStorage.getItem("siteData")) || [
     logo: "阮一峰的网络日志",
   },
   {
-    href: "https://www.acfun.cn/",
-    logo: "acfun",
+    href: "https://www.vipbic.com/rank.html",
+    logo: "vipbic",
   },
   {
-    href: "https://www.bilibili.com/",
-    logo: "bilibili",
+    href: "https://www.wikipedia.org/",
+    logo: "wiki",
   },
   {
-    href: "https://www.baidu.com/",
-    logo: "百度",
+    href: "https://www.google.com/",
+    logo: "google",
   },
   {
-    href: "https://www.zhihu.com/",
-    logo: "知乎",
+    href: "https://github.com/",
+    logo: "github",
   },
   {
-    href: "http://www.ruanyifeng.com/blog/",
-    logo: "阮一峰的网络日志",
+    href: "https://www.imooc.com/",
+    logo: "慕课网",
   },
 ];
 
